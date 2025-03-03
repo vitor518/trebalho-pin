@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - oBoticário</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Carrinho de Compras - oBoticário</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Produtos</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/carrinho">Carrinho de Compras</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="carrinho">
+            <h2>Seu Carrinho</h2>
+            <% if (carrinho.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% carrinho.forEach((item, index) => { %>
+                            <tr>
+                                <td><%= item.produto %></td>
+                                <td><%= item.quantidade %></td>
+                                <td>R$ <%= item.preco.toFixed(2) %></td>
+                                <td><button onclick="removerDoCarrinho(<%= index %>)">Remover</button></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>Seu carrinho está vazio.</p>
+            <% } %>
+        </section>
+    </main>
+    <footer>
+        <pre>&copy; oBoticário. Kauã Henrique, Ana Clara, Brayan Andrade, Francisco Tinoco, Matheus Sant'Ana e Vitor Oliveira.
+TRABALHO DE PJI - 2025 - 1º BIMESTRE
+        </pre>
+    </footer>
+    <script>
+        function removerDoCarrinho(index) {
+            fetch(`/remover-do-carrinho/${index}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Erro ao remover o produto do carrinho.');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

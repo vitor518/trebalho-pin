@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte ao Vendedor - oBoticário</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/scripts/pedidos.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Suporte ao Vendedor - oBoticário</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Produtos</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/carrinho">Carrinho de Compras</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="produtos">
+            <h2>Produtos</h2>
+            <p>Informações detalhadas sobre os produtos oBoticário.</p>
+            <table>
+                <tr>
+                    <td>
+                        <div class="produto">
+                            <h3>Floratta Blue</h3>
+                            <img src="/img/FLORATTA-DES-COL-MY-BLUE-75ml-B01004_.webp" alt="Floratta Blue" width="150">
+                            <p>Perfume feminino com fragrância floral.</p>
+                            <p>Preço: R$ 99,90</p>
+                            <button onclick="adicionarAoCarrinho('Floratta Blue', 99.90)">Adicionar ao Carrinho</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="produto">   
+                            <h3>Malbec</h3>
+                            <img src="/img/images.jpg" alt="Malbec" width="150">
+                            <p>Perfume masculino com fragrância amadeirada.</p>
+                            <p>Preço: R$ 129,90</p>
+                            <button onclick="adicionarAoCarrinho('Malbec', 129.90)">Adicionar ao Carrinho</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="produto">
+                            <h3>Nativa SPA Ameixa</h3>
+                            <img src="/img/2__72556.jpg" alt="Nativa SPA Ameixa" width="150">
+                            <p>Loção hidratante corporal com fragrância de ameixa.</p>
+                            <p>Preço: R$ 49,90</p>
+                            <button onclick="adicionarAoCarrinho('Nativa SPA Ameixa', 49.90)">Adicionar ao Carrinho</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <pre>&copy; oBoticário. Kauã Henrique, Ana Clara, Brayan Andrade, Francisco Tinoco, Matheus Sant'Ana e Vitor Oliveira.
+TRABALHO DE PJI - 2025 - 1º BIMESTRE
+        </pre>
+    </footer>
+    <script>
+        function adicionarAoCarrinho(produto, preco) {
+            fetch('/adicionar-ao-carrinho', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ produto, preco })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`${produto} adicionado ao carrinho por R$ ${preco.toFixed(2)}`);
+                } else {
+                    alert('Erro ao adicionar o produto ao carrinho.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
