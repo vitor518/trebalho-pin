@@ -1,0 +1,19 @@
+
+*{
+    text-align: center;
+    background-color: #f4f4f4;
+
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-size: x-small;
+    border-color: black;
+    text-align: center;
+    font-family: monospace; 
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(84, 0, 0);
+}

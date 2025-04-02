@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+iframe {
+    border: 2px solid black; /* Borda roxa */
+    border-radius: 10px;
+
+}
+#principal{
+    border: 0px;
+}
+h1{
+    border-color: black;
+    border-style: double;
+    text-align: center;
+    font-family: monospace;
+    
+    border: 3px solid #000; /* define a cor e a espessura da borda */
+    border-radius: 15px; /* valor em pixels define o grau de arredondamento */
+    padding: 15px; /* define o preenchimento interno */
+    background-color: rgb(84, 0, 0);
+    color: aliceblue;
+    
+}
